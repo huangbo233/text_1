@@ -1,29 +1,30 @@
+//ä¿®æ”¹æµ‹è¯•
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> result;
         sort(nums.begin(), nums.end());
-        // ÕÒ³öa + b + c = 0
+        // æ‰¾å‡ºa + b + c = 0
         // a = nums[i], b = nums[left], c = nums[right]
         for (int i = 0; i < nums.size(); i++) {
-            // ÅÅĞòÖ®ºóÈç¹ûµÚÒ»¸öÔªËØÒÑ¾­´óÓÚÁã£¬ÄÇÃ´ÎŞÂÛÈçºÎ×éºÏ¶¼²»¿ÉÄÜ´Õ³ÉÈıÔª×é£¬Ö±½Ó·µ»Ø½á¹û¾Í¿ÉÒÔÁË
+            // æ’åºä¹‹åå¦‚æœç¬¬ä¸€ä¸ªå…ƒç´ å·²ç»å¤§äºé›¶ï¼Œé‚£ä¹ˆæ— è®ºå¦‚ä½•ç»„åˆéƒ½ä¸å¯èƒ½å‡‘æˆä¸‰å…ƒç»„ï¼Œç›´æ¥è¿”å›ç»“æœå°±å¯ä»¥äº†
             if (nums[i] > 0) {
                 return result;
             }
-            // ´íÎóÈ¥ÖØa·½·¨£¬½«»áÂ©µô-1,-1,2 ÕâÖÖÇé¿ö
+            // é”™è¯¯å»é‡aæ–¹æ³•ï¼Œå°†ä¼šæ¼æ‰-1,-1,2 è¿™ç§æƒ…å†µ
             /*
             if (nums[i] == nums[i + 1]) {
                 continue;
             }
             */
-            // ÕıÈ·È¥ÖØa·½·¨
+            // æ­£ç¡®å»é‡aæ–¹æ³•
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
             int left = i + 1;
             int right = nums.size() - 1;
             while (right > left) {
-                // È¥ÖØ¸´Âß¼­Èç¹û·ÅÔÚÕâÀï£¬0£¬0£¬0 µÄÇé¿ö£¬¿ÉÄÜÖ±½Óµ¼ÖÂ right<=left ÁË£¬´Ó¶øÂ©µôÁË 0,0,0 ÕâÖÖÈıÔª×é
+                // å»é‡å¤é€»è¾‘å¦‚æœæ”¾åœ¨è¿™é‡Œï¼Œ0ï¼Œ0ï¼Œ0 çš„æƒ…å†µï¼Œå¯èƒ½ç›´æ¥å¯¼è‡´ right<=left äº†ï¼Œä»è€Œæ¼æ‰äº† 0,0,0 è¿™ç§ä¸‰å…ƒç»„
                 /*
                 while (right > left && nums[right] == nums[right - 1]) right--;
                 while (right > left && nums[left] == nums[left + 1]) left++;
@@ -32,11 +33,11 @@ public:
                 else if (nums[i] + nums[left] + nums[right] < 0) left++;
                 else {
                     result.push_back(vector<int>{nums[i], nums[left], nums[right]});
-                    // È¥ÖØÂß¼­Ó¦¸Ã·ÅÔÚÕÒµ½Ò»¸öÈıÔª×éÖ®ºó£¬¶Ôb ºÍ cÈ¥ÖØ
+                    // å»é‡é€»è¾‘åº”è¯¥æ”¾åœ¨æ‰¾åˆ°ä¸€ä¸ªä¸‰å…ƒç»„ä¹‹åï¼Œå¯¹b å’Œ cå»é‡
                     while (right > left && nums[right] == nums[right - 1]) right--;
                     while (right > left && nums[left] == nums[left + 1]) left++;
 
-                    // ÕÒµ½´ğ°¸Ê±£¬Ë«Ö¸ÕëÍ¬Ê±ÊÕËõ
+                    // æ‰¾åˆ°ç­”æ¡ˆæ—¶ï¼ŒåŒæŒ‡é’ˆåŒæ—¶æ”¶ç¼©
                     right--;
                     left++;
                 }
